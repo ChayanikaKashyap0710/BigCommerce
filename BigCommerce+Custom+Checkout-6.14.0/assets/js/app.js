@@ -1,6 +1,8 @@
 __webpack_public_path__ = window.__webpack_public_path__; // eslint-disable-line
 
 import Global from './theme/global';
+import 'babel-polyfill';
+import $ from 'jquery';
 
 const getAccount = () => import('./theme/account');
 const getLogin = () => import('./theme/auth');
@@ -50,6 +52,7 @@ const pageClasses = {
     newsletter_subscribe: noop,
     wishlist: () => import('./theme/wishlist'),
     wishlists: () => import('./theme/wishlist'),
+    checkout: () => import('./theme/checkout'),
 };
 
 const customClasses = {};
