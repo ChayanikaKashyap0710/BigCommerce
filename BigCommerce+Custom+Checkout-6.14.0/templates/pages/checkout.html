@@ -21,571 +21,598 @@
 {{/partial}}
 
 {{#partial "page"}}
+
 <div>
-<div class="container mb-5 mt-5">
-    <div class="row">
-        <div class="container mb-5 mt-5">
-            <div class="row text-center">
-                <div class="col-md-12 col-lg-12">
-                    <div class="row text-muted">
-                        <div class="h2 col-12">CUSTOM CHECKOUT</div>
-                        <div class="col-lg-12 col-md-12 dashhead-subtitle h6 text-capitalize text-muted">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="loader"></div>
-                <div class="col-12" id="main-div">
-                    <div class="row mt-5">
-                        <div class="col-3">
-                            <h5></h5>
-                        </div>
-                        <div class="col-4">
-                            <h5>Products</h5>
-                        </div>
-                        <div class="col-2">
-                            <h5>Price</h5>
-                        </div>
-                        <div class="col-3">
-                            <h5>Quantity</h5>
-                        </div>
-                    </div>
-                    <div class="row" id="product-row">
-                        <div class="col-2">
-                            <img id="product-image" src=/
-                                style=width:150px;height:150px;position:relative;display:block;bottom:40px;>
-                        </div>
-                        <div class="col-4" id="product-name">
-                        </div>
-                        <div class="col-2">
-                            <span id="product-price">$</span>
-                        </div>
-                        <div class="col-3">
-                            <div class="number">
-                                <span class="minus" id="minus">-</span>
-                                <input class="txtQuantity" id="txtQuantity_1" type="text" value="" />
-                                <span class="plus" id="plus">+</span>
-                            </div>
-                        </div>
-                        <div class="col-1">
-                            <a href="#" class="text-danger">remove</a>
-                        </div>
-                    </div>
-                    <div class="col-8" id="product-total">
-                        <div class="col-4">
-                            <span class="subtotal">SUBTOTAL:</span>
-                            <span id="subtotal">$</span>
-                        </div>
-                        <div class="col-4">
-                            <span class="shipping-rate">Shipping:</span>
-                            <span id="shippingRate">--</span>
-                        </div>
-                        <span id="couponCodeHead" style="color: blue;">Coupon/Gift Certificate</span>
-                        <div class="col-12" id="couponInput" style="display: none;">
-                            <input id="couponCode" name="couponCode" type="text" data-container="body"
-                                data-placement="top" data-toggle="coupon" placeholder="Enter Coupon Code" value="">
-                            <span class="text-danger" id="errorClass"></span>
-                            <button type="submit" id="couponBtn">Apply</button>
-                            <div class="col-10" id="couponDetails" style="display: none;">
-                                <div class="col-8" id="couponName"></div>
-                                <div class="col-3" id="discountValue"></div>
-                                <div class="col-1">
-                                    <a class="text-danger" id="removeCoupon">remove</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <span class="totalCheckoutPrice">Total:</span>
-                            <span id="totalCheckoutPrice">$</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="col-12 col-lg-6 justify-content-center border-lg-right">
-    <div class="row justify-content-center">
-        <div class="col-6" style="font-size: 18px;">
-            Contact information
-        </div>
-        <div class="col-6">
-            Already have an account? <a href="/login.php" class="text-info">Log in</a>
-        </div>
-    </div>
-    {{#if customer}}
-    <div class="row">
-        <div class="col-12">
-            <div class="row mt-2">
-                <div class="col-12">
-                    <div class="w-75">
-                        <input id="txtEmail" name="txtEmail" class="form-control" type="text" data-container="body"
-                            data-placement="top" data-toggle="email" title="" placeholder="Please enter email" value="">
-                    </div>
-                </div>
-                <button class="continue">Continue</button>
-            </div>
-        </div>
-    </div>
-
-    <form>
-        <div class="row mt-4">
-            <div class="col-xl-12">
-                <div class="row justify-content-center">
-                    <div class="col-12 accordion" style="font-size: 18px;">
-                        Shipping Address
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="shippingForm panel" style="display: none;">
-            <div class="row mt-4">
-                <div class="col-12 mt-4">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="w-100">
-                                <label>First Name</label>
-                                <input id="shippingtxtFirstName" class="form-control" type="text" data-container="body"
-                                    data-placement="top" data-toggle="tooltip" title="" value="" name="txtFirstName">
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="w-100">
-                                <label>Last Name</label>
-                                <input id="shippingtxtLastName" class="form-control" type="text" data-container="body"
-                                    data-placement="top" data-toggle="tooltip" title="" value="" name="txtLastName">
+    <div class="container mb-5 mt-5">
+        <div class="row">
+            <div class="container mb-5 mt-5">
+                <div class="row text-center">
+                    <div class="col-md-12 col-lg-12">
+                        <div class="row text-muted">
+                            <div class="h2 col-12">CUSTOM CHECKOUT</div>
+                            <div class="col-lg-12 col-md-12 dashhead-subtitle h6 text-capitalize text-muted">
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 mt-4">
-                    <div class="w-100">
-                        <label>Company Name</label>
-                        <input id="shippingtxtCompanyName" class="form-control" type="text" data-container="body"
-                            data-placement="top" data-toggle="tooltip" title="" value="" name="txtCompanyName">
-                    </div>
-                </div>
-                <div class="col-12 mt-4">
-                    <div class="w-100">
-                        <label>Address Line-1</label>
-                        <input id="shippingtxtAddress" name="txtAddress" class="form-control shipping" type="text"
-                            data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
-                    </div>
-                </div>
-                <div class="col-12 mt-4">
-                    <div class="w-100">
-                        <label>Address Line-2</label>
-                        <input id="shippingtxtAddress-2" name="txtAddress" class="form-control" type="text"
-                            data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
-                    </div>
-                </div>
-                <div class="col-12 mt-4">
-                    <div class="w-100">
-                        <label>Contact Number</label>
-                        <input id="shippingtxtPhoneNumber" name="txtPhoneNumber" class="form-control" type="text"
-                            data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
-                    </div>
-                </div>
-                <div class="col-12 mt-4">
-                    <div class="w-100">
-                        <label>City</label>
-                        <input id="shippingtxtCityName" name="txtCityName" class="form-control shipping" type="text"
-                            data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
-                    </div>
-                </div>
-                <div class="col-12 mt-4">
-                    <div class="w-100">
-                        <label>Country</label>
-                        <select class="selectpicker countrypicker dropdown-header w-100 shipping" id="shippingZone"
-                            data-live-search="true" data-default="United States" data-flag="true">
-                            <option value="">Select Country</option>
-                            <option value="US">USA</option>
-                            <option value="IN">India</option>
-                            <option value="UK">UK</option>
-                            <option value="NZ">New Zealand</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-12 mt-4">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="w-100">
-                                <label>State</label>
-                                <input id="shippingtxtStateName" name="txtStateName" class="form-control shipping" type="text"
-                                    data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="w-100">
-                                <label>Postal Code</label>
-                                <input id="shippingtxtPostalCode" class="form-control shipping" type="text" data-container="body"
-                                    data-placement="top" data-toggle="tooltip" title="" value="" name="txtPostalCode">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <span class="pl-4">
-                <input class="form-check-input" style="cursor:pointer;" type="checkbox" name="adresscheckbox"
-                    id="adresscheckbox">
-                <small class="txtAddress-field text-muted">Billing Address is same as Shipping Address</small>
-            </span>
-        </div>
-        <div class="row mt-4">
-            <div class="col-xl-12">
-                <div class="row justify-content-center">
-                    <div class="col-12" style="font-size: 18px;">
-                        Shipping Methods
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mt-4">
-            <div class="col-12" id="shippingMethodDropDown">
-            </div>
-        </div>
-        <div class="row mt-4">
-            <div class="col-xl-12">
-                <div class="row justify-content-center">
-                    <div class="col-12 accordion" style="font-size: 18px;">
-                        Billing Address
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="billingForm panel">
-            <div class="col-12 mt-4">
                 <div class="row">
-                    <div class="col-6">
-                        <div class="w-100">
-                            <label>First Name</label>
-                            <input id="billingtxtFirstName" class="form-control billing" type="text" data-container="body"
-                                data-placement="top" data-toggle="tooltip" title="" value="" name="txtFirstName">
+                    <div class="loader"></div>
+                    <div class="col-12" id="main-div">
+                        <div class="row mt-5">
+                            <div class="col-3">
+                                <h5></h5>
+                            </div>
+                            <div class="col-4">
+                                <h5>Products</h5>
+                            </div>
+                            <div class="col-2">
+                                <h5>Price</h5>
+                            </div>
+                            <div class="col-3">
+                                <h5>Quantity</h5>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="w-100">
-                            <label>Last Name</label>
-                            <input id="billingtxtLastName" class="form-control billing" type="text" data-container="body"
-                                data-placement="top" data-toggle="tooltip" title="" value="" name="txtLastName">
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-4">
-                    <div class="col-12">
-                        <label>Company Name</label>
-                        <input id="billingtxtCompanyName" class="form-control billing" type="text" data-container="body"
-                            data-placement="top" data-toggle="tooltip" title="" value="" name="txtCompanyName">
-                    </div>
-                    <div class="col-12 mt-4">
-                        <div class="w-100">
-                            <label>Address Line-1</label>
-                            <input id="billingtxtAddress" name="txtAddress" class="form-control billing" type="text"
-                                data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
-                        </div>
-                    </div>
-                    <div class="col-12 mt-4">
-                        <div class="w-100">
-                            <label>Address Line-2</label>
-                            <input id="billingtxtAddress-2" name="txtAddress" class="form-control billing" type="text"
-                                data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
-                        </div>
-                    </div>
-                    <div class="col-12 mt-4">
-                        <div class="w-100">
-                            <label>Contact Number</label>
-                            <input id="billingtxtPhoneNumber" name="txtPhoneNumber" class="form-control billing" type="text"
-                                data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
-                        </div>
-                    </div>
-                    <div class="col-12 mt-4">
-                        <div class="w-100">
-                            <label>City</label>
-                            <input id="billingtxtCityName" name="txtCityName" class="form-control billing" type="text"
-                                data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <label>Country</label>
-                        <select class="selectpicker countrypicker dropdown-header w-100 billing" data-live-search="true"
-                            data-default="United States" data-flag="true" id="billingZone">
-                            <option>Select Country</option>
-                            <option value="US">USA</option>
-                            <option value="NZ">New Zealand</option>
-                        </select>
-                    </div>
-                    <div class="col-12 mt-4">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="w-100">
-                                    <label>State or Province</label>
-                                    <input id="billingtxtStateName" name="txtStateName" class="form-control billing" type="text"
-                                        data-container="body" data-placement="top" data-toggle="tooltip" title=""
-                                        value="">
+                        <div class="row" id="product-row">
+                            <div class="col-2">
+                                <img id="product-image" src=/
+                                    style=width:150px;height:150px;position:relative;display:block;bottom:40px;>
+                            </div>
+                            <div class="col-4" id="product-name">
+                            </div>
+                            <div class="col-2">
+                                <span id="product-price">$</span>
+                            </div>
+                            <div class="col-3">
+                                <div class="number">
+                                    <span class="minus" id="minus">-</span>
+                                    <input class="txtQuantity" id="txtQuantity_1" type="text" value="" />
+                                    <span class="plus" id="plus">+</span>
                                 </div>
                             </div>
-                            <div class="col-6">
-                                <div class="w-100">
-                                    <label>Postal Code</label>
-                                    <input id="billingtxtPostalCode" class="form-control billing" type="text"
-                                        data-container="body" data-placement="top" data-toggle="tooltip" title=""
-                                        value="" name="txtPostalCode">
+                            <div class="col-1">
+                                <a href="#" class="text-danger">remove</a>
+                            </div>
+                        </div>
+                        <div class="col-8" id="product-total">
+                            <div class="col-4">
+                                <span class="subtotal">SUBTOTAL:</span>
+                                <span id="subtotal">$</span>
+                            </div>
+                            <div class="col-4">
+                                <span class="shipping-rate">Shipping:</span>
+                                <span id="shippingRate">--</span>
+                            </div>
+                            <span id="couponCodeHead" style="color: blue;">Coupon/Gift Certificate</span>
+                            <div class="col-12" id="couponInput" style="display: none;">
+                                <input id="couponCode" name="couponCode" type="text" data-container="body"
+                                    data-placement="top" data-toggle="coupon" placeholder="Enter Coupon Code" value="">
+                                <span class="text-danger" id="errorClass"></span>
+                                <button type="submit" id="couponBtn">Apply</button>
+                                <div class="col-10" id="couponDetails" style="display: none;">
+                                    <div class="col-8" id="couponName"></div>
+                                    <div class="col-3" id="discountValue"></div>
+                                    <div class="col-1">
+                                        <a class="text-danger" id="removeCoupon">remove</a>
+                                    </div>
                                 </div>
+                            </div>
+                            <div class="col-4">
+                                <span class="totalCheckoutPrice">Total:</span>
+                                <span id="totalCheckoutPrice">$</span>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </form>
-
-    {{else}}
-    <div class="row">
-        <div class="col-12">
-            <div class="row mt-2">
-                <div class="col-12">
-                    <div class="w-75">
-                        <input id="txtEmail" name="txtEmail" class="form-control" type="text" data-container="body"
-                            data-placement="top" data-toggle="email" title="" placeholder="Please enter email" value="">
-                    </div>
-                </div>
-                <button class="continue">Continue</button>
             </div>
         </div>
     </div>
-    <form>
-        <div class="row mt-4">
-            <div class="col-xl-12">
-                <div class="row justify-content-center">
-                    <div class="col-12 accordion" style="font-size: 18px;">
-                        Shipping Address
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="shippingForm panel" style="display: none;">
-            <div class="row mt-4">
-                <div class="col-12 mt-4">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="w-100">
-                                <label>First Name</label>
-                                <input id="shippingtxtFirstName" class="form-control shipping" type="text" data-container="body"
-                                    data-placement="top" data-toggle="tooltip" title="" value="" name="txtFirstName">
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="w-100">
-                                <label>Last Name</label>
-                                <input id="shippingtxtLastName" class="form-control shipping" type="text" data-container="body"
-                                    data-placement="top" data-toggle="tooltip" title="" value="" name="txtLastName">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 mt-4">
-                    <div class="w-100">
-                        <label>Company Name</label>
-                        <input id="shippingtxtCompanyName" class="form-control shipping" type="text" data-container="body"
-                            data-placement="top" data-toggle="tooltip" title="" value="" name="txtCompanyName">
-                    </div>
-                </div>
-                <div class="col-12 mt-4">
-                    <div class="w-100">
-                        <label>Address Line-1</label>
-                        <input id="shippingtxtAddress" name="txtAddress" class="form-control shipping" type="text"
-                            data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
-                    </div>
-                </div>
-                <div class="col-12 mt-4">
-                    <div class="w-100">
-                        <label>Address Line-2</label>
-                        <input id="shippingtxtAddress-2" name="txtAddress" class="form-control shipping" type="text"
-                            data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
-                    </div>
-                </div>
-                <div class="col-12 mt-4">
-                    <div class="w-100">
-                        <label>Contact Number</label>
-                        <input id="shippingtxtPhoneNumber" name="txtPhoneNumber" class="form-control shipping" type="text"
-                            data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
-                    </div>
-                </div>
-                <div class="col-12 mt-4">
-                    <div class="w-100">
-                        <label>City</label>
-                        <input id="shippingtxtCityName" name="txtCityName" class="form-control shipping" type="text"
-                            data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
-                    </div>
-                </div>
-                <div class="col-12 mt-4">
-                    <div class="w-100">
-                        <label>Country</label>
-                        <select class="selectpicker countrypicker dropdown-header w-100 shipping" id="shippingZone"
-                            data-live-search="true" data-default="United States" data-flag="true">
-                            <option value="">Select Country</option>
-                            <option value="US">USA</option>
-                            <option value="IN">India</option>
-                            <option value="UK">UK</option>
-                            <option value="NZ">New Zealand</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-12 mt-4">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="w-100">
-                                <label>State</label>
-                                <input id="shippingtxtStateName" name="txtStateName" class="form-control shipping" type="text"
-                                    data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="w-100">
-                                <label>Postal Code</label>
-                                <input id="shippingtxtPostalCode" class="form-control shipping" type="text" data-container="body"
-                                    data-placement="top" data-toggle="tooltip" title="" value="" name="txtPostalCode">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <span class="pl-4">
-                <input class="form-check-input" style="cursor:pointer;" type="checkbox" name="adresscheckbox"
-                    id="adresscheckbox">
-                <small class="txtAddress-field text-muted">Billing Address is same as Shipping Address</small>
-            </span>
-        </div>
-        <div class="row mt-4">
-            <div class="col-xl-12">
-                <div class="row justify-content-center">
-                    <div class="col-12" style="font-size: 18px;">
-                        Shipping Methods
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mt-4">
-            <div class="col-12" id="shippingMethodDropDown">
-            </div>
-        </div>
-        <div class="row mt-4">
-            <div class="col-xl-12">
-                <div class="row justify-content-center">
-                    <div class="col-12 accordion" style="font-size: 18px;">
-                        Billing Address
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="billingForm panel">
-            <div class="col-12 mt-4">
-                <div class="row">
-                    <div class="col-6">
-                        <div class="w-100">
-                            <label>First Name</label>
-                            <input id="billingtxtFirstName" class="form-control billing" type="text" data-container="body"
-                                data-placement="top" data-toggle="tooltip" title="" value="" name="txtFirstName">
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="w-100">
-                            <label>Last Name</label>
-                            <input id="billingtxtLastName" class="form-control billing" type="text" data-container="body"
-                                data-placement="top" data-toggle="tooltip" title="" value="" name="txtLastName">
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-4">
-                    <div class="col-12">
-                        <label>Company Name</label>
-                        <input id="billingtxtCompanyName" class="form-control billing" type="text" data-container="body"
-                            data-placement="top" data-toggle="tooltip" title="" value="" name="txtCompanyName">
-                    </div>
-                    <div class="col-12 mt-4">
-                        <div class="w-100">
-                            <label>Address Line-1</label>
-                            <input id="billingtxtAddress" name="txtAddress" class="form-control billing" type="text"
-                                data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
-                        </div>
-                    </div>
-                    <div class="col-12 mt-4">
-                        <div class="w-100">
-                            <label>Address Line-2</label>
-                            <input id="billingtxtAddress-2" name="txtAddress" class="form-control billing" type="text"
-                                data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
-                        </div>
-                    </div>
-                    <div class="col-12 mt-4">
-                        <div class="w-100">
-                            <label>Contact Number</label>
-                            <input id="billingtxtPhoneNumber" name="txtPhoneNumber" class="form-control billing" type="text"
-                                data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
-                        </div>
-                    </div>
-                    <div class="col-12 mt-4">
-                        <div class="w-100">
-                            <label>City</label>
-                            <input id="billingtxtCityName" name="txtCityName" class="form-control billing" type="text"
-                                data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <label>Country</label>
-                        <select class="selectpicker countrypicker dropdown-header w-100 billing" data-live-search="true"
-                            data-default="United States" data-flag="true" id="billingZone">
-                            <option>Select Country</option>
-                            <option value="US">USA</option>
-                            <option value="NZ">New Zealand</option>
-                        </select>
-                    </div>
-                    <div class="col-12 mt-4">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="w-100">
-                                    <label>State or Province</label>
-                                    <input id="billingtxtStateName" name="txtStateName" class="form-control billing" type="text"
-                                        data-container="body" data-placement="top" data-toggle="tooltip" title=""
-                                        value="">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="w-100">
-                                    <label>Postal Code</label>
-                                    <input id="billingtxtPostalCode" class="form-control billing" type="text"
-                                        data-container="body" data-placement="top" data-toggle="tooltip" title=""
-                                        value="" name="txtPostalCode">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
-    {{/if}}
     <div class="col-12 col-lg-6 justify-content-center border-lg-right">
-        <span class="pl-4">
-            <input class="form-check-input" style="cursor:pointer;" type="checkbox" name="cbEmailOffers"
-                id="cbEmailOffers">
-            <small class="txtEmail-field text-muted">Email me with news and offers</small>
-        </span>
-    </div>
-</div>
-<div class="col-8 col-lg-6 border-lg-right">
-    <div class="row mt-4">
-        <div class="col-xl-12">
-            <div class="row">
-                <div class="col-12" style="font-size: 18px;">
-                    Payment
+        <div class="row justify-content-center">
+            <div class="col-6" style="font-size: 18px;">
+                Contact information
+            </div>
+            <div class="col-6">
+                Already have an account? <a href="/login.php" class="text-info">Log in</a>
+            </div>
+        </div>
+        {{#if customer}}
+        <div class="row">
+            <div class="col-12">
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <div class="w-75">
+                            <input id="txtEmail" name="txtEmail" class="form-control" type="text" data-container="body"
+                                data-placement="top" data-toggle="email" title="" placeholder="Please enter email"
+                                value="">
+                        </div>
+                    </div>
+                    <button class="continue">Continue</button>
                 </div>
             </div>
         </div>
+
+        <form>
+            <div class="row mt-4">
+                <div class="col-xl-12">
+                    <div class="row justify-content-center">
+                        <div class="col-12 accordion" style="font-size: 18px;">
+                            Shipping Address
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="shippingForm panel" style="display: none;">
+                <div class="row mt-4">
+                    <div class="col-12 mt-4">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="w-100">
+                                    <label>First Name</label>
+                                    <input id="shippingtxtFirstName" class="form-control" type="text"
+                                        data-container="body" data-placement="top" data-toggle="tooltip" title=""
+                                        value="" name="txtFirstName">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="w-100">
+                                    <label>Last Name</label>
+                                    <input id="shippingtxtLastName" class="form-control" type="text"
+                                        data-container="body" data-placement="top" data-toggle="tooltip" title=""
+                                        value="" name="txtLastName">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <div class="w-100">
+                            <label>Company Name</label>
+                            <input id="shippingtxtCompanyName" class="form-control" type="text" data-container="body"
+                                data-placement="top" data-toggle="tooltip" title="" value="" name="txtCompanyName">
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <div class="w-100">
+                            <label>Address Line-1</label>
+                            <input id="shippingtxtAddress" name="txtAddress" class="form-control shipping" type="text"
+                                data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <div class="w-100">
+                            <label>Address Line-2</label>
+                            <input id="shippingtxtAddress-2" name="txtAddress" class="form-control" type="text"
+                                data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <div class="w-100">
+                            <label>Contact Number</label>
+                            <input id="shippingtxtPhoneNumber" name="txtPhoneNumber" class="form-control" type="text"
+                                data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <div class="w-100">
+                            <label>City</label>
+                            <input id="shippingtxtCityName" name="txtCityName" class="form-control shipping" type="text"
+                                data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <div class="w-100">
+                            <label>Country</label>
+                            <select class="selectpicker countrypicker dropdown-header w-100 shipping" id="shippingZone"
+                                data-live-search="true" data-default="United States" data-flag="true">
+                                <option value="">Select Country</option>
+                                <option value="US">USA</option>
+                                <option value="IN">India</option>
+                                <option value="UK">UK</option>
+                                <option value="NZ">New Zealand</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="w-100">
+                                    <label>State</label>
+                                    <input id="shippingtxtStateName" name="txtStateName" class="form-control shipping"
+                                        type="text" data-container="body" data-placement="top" data-toggle="tooltip"
+                                        title="" value="">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="w-100">
+                                    <label>Postal Code</label>
+                                    <input id="shippingtxtPostalCode" class="form-control shipping" type="text"
+                                        data-container="body" data-placement="top" data-toggle="tooltip" title=""
+                                        value="" name="txtPostalCode">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <span class="pl-4">
+                    <input class="form-check-input" style="cursor:pointer;" type="checkbox" name="adresscheckbox"
+                        id="adresscheckbox">
+                    <small class="txtAddress-field text-muted">Billing Address is same as Shipping Address</small>
+                </span>
+            </div>
+            <div class="row mt-4">
+                <div class="col-xl-12">
+                    <div class="row justify-content-center">
+                        <div class="col-12" style="font-size: 18px;">
+                            Shipping Methods
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12" id="shippingMethodDropDown">
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-xl-12">
+                    <div class="row justify-content-center">
+                        <div class="col-12 accordion" style="font-size: 18px;">
+                            Billing Address
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="billingForm panel" style="display: none;">
+                <div class="col-12 mt-4">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="w-100">
+                                <label>First Name</label>
+                                <input id="billingtxtFirstName" class="form-control billing" type="text"
+                                    data-container="body" data-placement="top" data-toggle="tooltip" title="" value=""
+                                    name="txtFirstName">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="w-100">
+                                <label>Last Name</label>
+                                <input id="billingtxtLastName" class="form-control billing" type="text"
+                                    data-container="body" data-placement="top" data-toggle="tooltip" title="" value=""
+                                    name="txtLastName">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <label>Company Name</label>
+                            <input id="billingtxtCompanyName" class="form-control billing" type="text"
+                                data-container="body" data-placement="top" data-toggle="tooltip" title="" value=""
+                                name="txtCompanyName">
+                        </div>
+                        <div class="col-12 mt-4">
+                            <div class="w-100">
+                                <label>Address Line-1</label>
+                                <input id="billingtxtAddress" name="txtAddress" class="form-control billing" type="text"
+                                    data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
+                            </div>
+                        </div>
+                        <div class="col-12 mt-4">
+                            <div class="w-100">
+                                <label>Address Line-2</label>
+                                <input id="billingtxtAddress-2" name="txtAddress" class="form-control billing"
+                                    type="text" data-container="body" data-placement="top" data-toggle="tooltip"
+                                    title="" value="">
+                            </div>
+                        </div>
+                        <div class="col-12 mt-4">
+                            <div class="w-100">
+                                <label>Contact Number</label>
+                                <input id="billingtxtPhoneNumber" name="txtPhoneNumber" class="form-control billing"
+                                    type="text" data-container="body" data-placement="top" data-toggle="tooltip"
+                                    title="" value="">
+                            </div>
+                        </div>
+                        <div class="col-12 mt-4">
+                            <div class="w-100">
+                                <label>City</label>
+                                <input id="billingtxtCityName" name="txtCityName" class="form-control billing"
+                                    type="text" data-container="body" data-placement="top" data-toggle="tooltip"
+                                    title="" value="">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label>Country</label>
+                            <select class="selectpicker countrypicker dropdown-header w-100 billing"
+                                data-live-search="true" data-default="United States" data-flag="true" id="billingZone">
+                                <option>Select Country</option>
+                                <option value="US">USA</option>
+                                <option value="NZ">New Zealand</option>
+                            </select>
+                        </div>
+                        <div class="col-12 mt-4">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="w-100">
+                                        <label>State or Province</label>
+                                        <input id="billingtxtStateName" name="txtStateName" class="form-control billing"
+                                            type="text" data-container="body" data-placement="top" data-toggle="tooltip"
+                                            title="" value="">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="w-100">
+                                        <label>Postal Code</label>
+                                        <input id="billingtxtPostalCode" class="form-control billing" type="text"
+                                            data-container="body" data-placement="top" data-toggle="tooltip" title=""
+                                            value="" name="txtPostalCode">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="billingContinue">Continue</button>
+                </div>
+            </div>
+        </form>
+
+        {{else}}
+        <div class="row">
+            <div class="col-12">
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <div class="w-75">
+                            <input id="txtEmail" name="txtEmail" class="form-control" type="text" data-container="body"
+                                data-placement="top" data-toggle="email" title="" placeholder="Please enter email"
+                                value="">
+                        </div>
+                    </div>
+                    <button class="continue">Continue</button>
+                </div>
+            </div>
+        </div>
+        <form>
+            <div class="row mt-4">
+                <div class="col-xl-12">
+                    <div class="row justify-content-center">
+                        <div class="col-12 accordion" style="font-size: 18px;">
+                            Shipping Address
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="shippingForm panel" style="display: none;">
+                <div class="row mt-4">
+                    <div class="col-12 mt-4">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="w-100">
+                                    <label>First Name</label>
+                                    <input id="shippingtxtFirstName" class="form-control shipping" type="text"
+                                        data-container="body" data-placement="top" data-toggle="tooltip" title=""
+                                        value="" name="txtFirstName">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="w-100">
+                                    <label>Last Name</label>
+                                    <input id="shippingtxtLastName" class="form-control shipping" type="text"
+                                        data-container="body" data-placement="top" data-toggle="tooltip" title=""
+                                        value="" name="txtLastName">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <div class="w-100">
+                            <label>Company Name</label>
+                            <input id="shippingtxtCompanyName" class="form-control shipping" type="text"
+                                data-container="body" data-placement="top" data-toggle="tooltip" title="" value=""
+                                name="txtCompanyName">
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <div class="w-100">
+                            <label>Address Line-1</label>
+                            <input id="shippingtxtAddress" name="txtAddress" class="form-control shipping" type="text"
+                                data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <div class="w-100">
+                            <label>Address Line-2</label>
+                            <input id="shippingtxtAddress-2" name="txtAddress" class="form-control shipping" type="text"
+                                data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <div class="w-100">
+                            <label>Contact Number</label>
+                            <input id="shippingtxtPhoneNumber" name="txtPhoneNumber" class="form-control shipping"
+                                type="text" data-container="body" data-placement="top" data-toggle="tooltip" title=""
+                                value="">
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <div class="w-100">
+                            <label>City</label>
+                            <input id="shippingtxtCityName" name="txtCityName" class="form-control shipping" type="text"
+                                data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <div class="w-100">
+                            <label>Country</label>
+                            <select class="selectpicker countrypicker dropdown-header w-100 shipping" id="shippingZone"
+                                data-live-search="true" data-default="United States" data-flag="true">
+                                <option value="">Select Country</option>
+                                <option value="US">USA</option>
+                                <option value="IN">India</option>
+                                <option value="UK">UK</option>
+                                <option value="NZ">New Zealand</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="w-100">
+                                    <label>State</label>
+                                    <input id="shippingtxtStateName" name="txtStateName" class="form-control shipping"
+                                        type="text" data-container="body" data-placement="top" data-toggle="tooltip"
+                                        title="" value="">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="w-100">
+                                    <label>Postal Code</label>
+                                    <input id="shippingtxtPostalCode" class="form-control shipping" type="text"
+                                        data-container="body" data-placement="top" data-toggle="tooltip" title=""
+                                        value="" name="txtPostalCode">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <span class="pl-4">
+                    <input class="form-check-input" style="cursor:pointer;" type="checkbox" name="adresscheckbox"
+                        id="adresscheckbox">
+                    <small class="txtAddress-field text-muted">Billing Address is same as Shipping Address</small>
+                </span>
+            </div>
+            <div class="row mt-4">
+                <div class="col-xl-12">
+                    <div class="row justify-content-center">
+                        <div class="col-12" style="font-size: 18px;">
+                            Shipping Methods
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12" id="shippingMethodDropDown">
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-xl-12">
+                    <div class="row justify-content-center">
+                        <div class="col-12 accordion" style="font-size: 18px;">
+                            Billing Address
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="billingForm panel" style="display: none;">
+                <div class="col-12 mt-4">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="w-100">
+                                <label>First Name</label>
+                                <input id="billingtxtFirstName" class="form-control billing" type="text"
+                                    data-container="body" data-placement="top" data-toggle="tooltip" title="" value=""
+                                    name="txtFirstName">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="w-100">
+                                <label>Last Name</label>
+                                <input id="billingtxtLastName" class="form-control billing" type="text"
+                                    data-container="body" data-placement="top" data-toggle="tooltip" title="" value=""
+                                    name="txtLastName">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <label>Company Name</label>
+                            <input id="billingtxtCompanyName" class="form-control billing" type="text"
+                                data-container="body" data-placement="top" data-toggle="tooltip" title="" value=""
+                                name="txtCompanyName">
+                        </div>
+                        <div class="col-12 mt-4">
+                            <div class="w-100">
+                                <label>Address Line-1</label>
+                                <input id="billingtxtAddress" name="txtAddress" class="form-control billing" type="text"
+                                    data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
+                            </div>
+                        </div>
+                        <div class="col-12 mt-4">
+                            <div class="w-100">
+                                <label>Address Line-2</label>
+                                <input id="billingtxtAddress-2" name="txtAddress" class="form-control billing"
+                                    type="text" data-container="body" data-placement="top" data-toggle="tooltip"
+                                    title="" value="">
+                            </div>
+                        </div>
+                        <div class="col-12 mt-4">
+                            <div class="w-100">
+                                <label>Contact Number</label>
+                                <input id="billingtxtPhoneNumber" name="txtPhoneNumber" class="form-control billing"
+                                    type="text" data-container="body" data-placement="top" data-toggle="tooltip"
+                                    title="" value="">
+                            </div>
+                        </div>
+                        <div class="col-12 mt-4">
+                            <div class="w-100">
+                                <label>City</label>
+                                <input id="billingtxtCityName" name="txtCityName" class="form-control billing"
+                                    type="text" data-container="body" data-placement="top" data-toggle="tooltip"
+                                    title="" value="">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label>Country</label>
+                            <select class="selectpicker countrypicker dropdown-header w-100 billing"
+                                data-live-search="true" data-default="United States" data-flag="true" id="billingZone">
+                                <option>Select Country</option>
+                                <option value="US">USA</option>
+                                <option value="NZ">New Zealand</option>
+                            </select>
+                        </div>
+                        <div class="col-12 mt-4">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="w-100">
+                                        <label>State or Province</label>
+                                        <input id="billingtxtStateName" name="txtStateName" class="form-control billing"
+                                            type="text" data-container="body" data-placement="top" data-toggle="tooltip"
+                                            title="" value="">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="w-100">
+                                        <label>Postal Code</label>
+                                        <input id="billingtxtPostalCode" class="form-control billing" type="text"
+                                            data-container="body" data-placement="top" data-toggle="tooltip" title=""
+                                            value="" name="txtPostalCode">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="billingContinue">Continue</button>
+                </div>
+            </div>
+        </form>
+        {{/if}}
+        <div class="col-12 col-lg-6 justify-content-center border-lg-right">
+            <span class="pl-4">
+                <input class="form-check-input" style="cursor:pointer;" type="checkbox" name="cbEmailOffers"
+                    id="cbEmailOffers">
+                <small class="txtEmail-field text-muted">Email me with news and offers</small>
+            </span>
+        </div>
     </div>
-    <div class="paymentMethodList" style="display: none;">
+    <div class="col-8 col-lg-6 border-lg-right">
+        <div class="row mt-4">
+            <div class="col-xl-12">
+                <div class="row">
+                    <div class="col-12" style="font-size: 18px;">
+                        Payment
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="paymentMethodList" style="display: none;">
+        </div>
     </div>
-</div>
 </div>
 </div>
 
@@ -613,7 +640,11 @@
 </script>
 
 {{/partial}}
+
 <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
 <script src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
-<script> window.stencilBootstrap("{{page_type}}", {{ jsContext }}).load();</script>
+<script>
+window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
+</script>
+
 {{> layout/empty}}

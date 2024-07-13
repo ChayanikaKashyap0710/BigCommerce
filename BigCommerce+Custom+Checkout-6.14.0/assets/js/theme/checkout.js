@@ -1,11 +1,8 @@
 import PageManager from './page-manager';
 import { createCheckoutService } from '@bigcommerce/checkout-sdk';
-import $, { get } from 'jquery';
-import axios from 'axios';
+import $ from 'jquery';
 import forms from './common/models/forms';
 import nod from './common/nod';
-import { log } from 'grunt';
-
 var win = window,
     listeners = [],
     doc = win.document,
@@ -15,13 +12,15 @@ var win = window,
 const service = createCheckoutService();
 export default class Checkout extends PageManager {
     async onReady() {
+        /*Codex code start*/
         const state = await service.loadCheckout();
         var get_checkout = state.data.getCheckout();
-        //console.log('get_checkout', get_checkout);
+        console.log('get_checkout', get_checkout);
         var grandTotal = get_checkout.grandTotal;
-        postCartItems(get_checkout)
+        postCartItems(get_checkout);
     }
 }
+
 async function postCartItems(get_checkout) {
     var myForm = get_checkout;
     myForm.method = "post";
@@ -99,7 +98,7 @@ async function postCartItems(get_checkout) {
     if (customer_email) {
         var customer_addr_1 = get_checkout.customer.addresses[0].address1;
         var customer_addr_2 = get_checkout.customer.addresses[0].address2;
-        var customer_state = get_checkout.customer.addresses[0].state;
+        var customer_state = get_checkout.customer.addresses[0].stateOrProvince;
         var customer_city = get_checkout.customer.addresses[0].city;
         var customer_pcode = get_checkout.customer.addresses[0].postalCode;
         var customer_pnumber = get_checkout.customer.addresses[0].phone;
@@ -182,7 +181,8 @@ async function postCartItems(get_checkout) {
 
         }
         continueButton.innerHTML = 'Continue';
-        continueButton.className = 'shippingMethodContinue';
+        continueButton.className = '';
+        continueButton.onclick = handleContinueButtonClick;
         document.getElementById("shippingMethodDropDown").appendChild(continueButton);
     } else {
         $(document).on('click', '.continue', async function (e) {
@@ -204,66 +204,7 @@ async function postCartItems(get_checkout) {
     }
 }
 
-// $(document).on("click", ".billingForm", async function () {
-//     console.log("hi");
-//     document.getElementById("txtEmail").setAttribute('value', customer_email);
-//     document.getElementById("billingtxtFirstName").setAttribute('value', customer_fname);
-//     document.getElementById("billingtxtLastName").setAttribute('value', customer_lname);
-//     document.getElementById("billingtxtAddress").setAttribute('value', customer_addr_1);
-//     document.getElementById("billingtxtAddress-2").setAttribute('value', customer_addr_2);
-//     document.getElementById("billingtxtCityName").setAttribute('value', customer_city);
-//     document.getElementById("billingtxtCompanyName").setAttribute('value', customer_company);
-//     document.getElementById("billingtxtStateName").setAttribute('value', customer_state);
-//     document.getElementById("billingtxtPostalCode").setAttribute('value', customer_pcode);
-//     document.getElementById("billingtxtPhoneNumber").setAttribute('value', customer_pnumber);
-//     $("#billingZone").val(countryCode);
-//     var address = {
-//         firstName: customer_fname,
-//         lastName: customer_lname,
-//         address1: customer_addr_1,
-//         address2: customer_addr_2,
-//         city: customer_city,
-//         company: customer_company,
-//         state: customer_state,
-//         postalCode: customer_pcode,
-//         country: country,
-//         countryCode: countryCode,
-//         phone: customer_pnumber,
-//         email: customer_email
-//     };
-//     console.log("address", address);
-//     // const state = await service.updateShippingAddress(address);
-//     // var selectDiv = document.getElementById("shippingMethod");
-//     // var continueButton = document.createElement('button');
-//     // if (selectDiv == null) {
-//     //     var shippingSelect = document.createElement('select');
-//     //     for (let i = 0; i < state.data.getShippingOptions().length; i++) {
-//     //         shippingSelect.id = 'shippingMethod';
-//     //         shippingSelect.className = 'selectpicker shippingmethod dropdown-header w-100';
-//     //         var optionElement = document.createElement('option');
-//     //         optionElement.value = state.data.getShippingOptions()[i].id;
-//     //         optionElement.text = state.data.getShippingOptions()[i].description;
-//     //         shippingSelect.appendChild(optionElement);
-//     //         document.getElementById("shippingMethodDropDown").appendChild(shippingSelect);
-//     //         shippingSelect.appendChild(optionElement);
-//     //         document.getElementById("shippingMethodDropDown").appendChild(shippingSelect);
-//     //     }
-//     // } else {
-//     //     $(selectDiv).empty();
-//     //     for (let i = 0; i < state.data.getShippingOptions().length; i++) {
-//     //         var optionElement = document.createElement('option');
-//     //         optionElement.value = state.data.getShippingOptions()[i].id;
-//     //         optionElement.text = state.data.getShippingOptions()[i].description;
-//     //         document.getElementById("shippingMethod").appendChild(optionElement);
-//     //     }
-
-//     // }
-//     // continueButton.innerHTML = 'Continue';
-//     // continueButton.className = 'shippingMethodContinue';
-//     // document.getElementById("shippingMethodDropDown").appendChild(continueButton);
-
-// })
-function validateForm(){
+function validateForm() {
     var isValid = true;
     var ObjData = {};
     var ObjDataArr = new Array();
@@ -281,7 +222,7 @@ function validateForm(){
         var customer_email = document.getElementById("txtEmail").value;
         var country = $("#shippingZone option:selected").html();
         var countryCode = document.getElementById("shippingZone").value;
-    
+
         if (customer_fname !== "" && customer_lname !== "" && customer_addr_1 !== "" && customer_addr_2 !== "" && customer_city !== "" && customer_state !== "" && customer_pcode !== "" && customer_pnumber !== "" && customer_email !== "" && country !== "" && countryCode !== "") {
             var address = {
                 firstName: customer_fname,
@@ -297,7 +238,7 @@ function validateForm(){
                 email: customer_email
             };
             const state = await service.updateShippingAddress(address);
-            console.log('address', address);
+            console.log('state.data.getShippingOptions()', state.data.getShippingOptions());
             var selectDiv = document.getElementById("shippingMethod");
             var continueButton = document.createElement('button');
             if (selectDiv == null) {
@@ -324,13 +265,14 @@ function validateForm(){
 
             }
             continueButton.innerHTML = 'Continue';
-            continueButton.className = 'shippingMethodContinue';
+            continueButton.className = '';
+            continueButton.onclick = handleContinueButtonClick;
             document.getElementById("shippingMethodDropDown").appendChild(continueButton);
         }
     }));
 }
 
-$('.continue').click(function (){
+$('.continue').click(function () {
     $('.shippingForm.panel').css('display', 'block');
 })
 $(document).on("click", ".minus", async function (ev) {
@@ -566,7 +508,7 @@ $(document).on("click", "#adresscheckbox", async function () {
                     optionElement.value = state.data.getShippingOptions()[i].id;
                     optionElement.text = state.data.getShippingOptions()[i].description;
                     continueButton.innerHTML = 'Continue';
-                    continueButton.className = 'shippingMethodContinue';
+                    continueButton.className = '';
                     shippingSelect.appendChild(optionElement);
                     document.getElementById("shippingMethodDropDown").appendChild(shippingSelect);
                     document.getElementById("shippingMethodDropDown").appendChild(continueButton);
@@ -599,22 +541,140 @@ $(document).on("click", "#adresscheckbox", async function () {
     }
 })
 
-document.querySelector('.shippingMethodContinue').addEventListener('click', async function(e) {
+
+async function handleContinueButtonClick(e) {
     e.preventDefault();
+    if (document.getElementById('adresscheckbox').checked == false) {
+        $(".billingForm").css('display', 'block');
+        const state = await service.loadPaymentMethods();
+        for (let i = 0; i < state.data.getPaymentMethods().length; i++) {
+            if (state.data.getPaymentMethods()[i].type == "PAYMENT_TYPE_API" && state.data.getPaymentMethods()[i].supportedCards.length !== 0 && state.data.getPaymentMethods()[i].method !== 'googlepay') {
+                const radioInput = document.createElement('input');
+                radioInput.type = 'radio';
+                radioInput.name = 'paymentMethod';
+                radioInput.className = 'cardPaymentMethod';
+                radioInput.value = state.data.getPaymentMethods()[i].id;
+    
+                const label = document.createElement('label');
+                label.className = 'cardPaymentMethodLabel';
+                label.title = '';
+                label.textContent = state.data.getPaymentMethods()[i].config.displayName;
+    
+                const paymentMethodContainer = document.createElement('div');
+                paymentMethodContainer.classList.add('paymentMethod', 'cardPaymentMethod');
+    
+                const formBody = document.createElement('div');
+                formBody.classList.add('form-body');
+    
+                const cardNumberInput = document.createElement('input');
+                cardNumberInput.type = 'text';
+                cardNumberInput.classList.add('card-number');
+                cardNumberInput.placeholder = 'Card Number';
+    
+                const cardNameInput = document.createElement('input');
+                cardNameInput.type = 'text';
+                cardNameInput.classList.add('card-name');
+                cardNameInput.placeholder = 'Name on Card';
+    
+                const dateField = document.createElement('div');
+                dateField.classList.add('date-field');
+    
+                const monthSelect = document.createElement('select');
+                monthSelect.name = 'Month';
+                monthSelect.id = 'cardMonth';
+    
+                const months = [
+                    'January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'
+                ];
+    
+                months.forEach((month, index) => {
+                    const option = document.createElement('option');
+                    option.value = (index + 1).toString().padStart(2, '0');
+                    option.textContent = month;
+                    monthSelect.appendChild(option);
+                });
+    
+                const yearSelect = document.createElement('select');
+                yearSelect.name = 'Year';
+    
+                const currentYear = new Date().getFullYear();
+                for (let i = currentYear; i <= currentYear + 6; i++) {
+                    const option = document.createElement('option');
+                    option.value = (i % 100).toString().padStart(2, '0');
+                    option.textContent = i;
+                    yearSelect.appendChild(option);
+                }
+                const cardVerification = document.createElement('div');
+                cardVerification.classList.add('card-verification');
+    
+                const cvvInput = document.createElement('input');
+                cvvInput.type = 'text';
+                cvvInput.id = 'cvv';
+                cvvInput.placeholder = 'CVV';
+    
+                const cvvDetails = document.createElement('div');
+                cvvDetails.classList.add('cvv-details');
+                cvvDetails.innerHTML = '<p>3 or 4 digits usually found <br> on the signature strip</p>';
+    
+                dateField.appendChild(monthSelect);
+                dateField.appendChild(yearSelect);
+    
+                cardVerification.appendChild(cvvInput);
+                cardVerification.appendChild(cvvDetails);
+    
+                formBody.appendChild(cardNumberInput);
+                formBody.appendChild(cardNameInput);
+                formBody.appendChild(dateField);
+                formBody.appendChild(cardVerification);
+    
+                paymentMethodContainer.appendChild(formBody);
+    
+                document.getElementsByClassName('paymentMethodList')[0].appendChild(radioInput);
+                document.getElementsByClassName('paymentMethodList')[0].appendChild(label);
+                document.getElementsByClassName('paymentMethodList')[0].appendChild(paymentMethodContainer);
+                $('.paymentMethodList').css('display', 'block');
+            } else {
+                var radioBtn = document.createElement("input");
+                radioBtn.type = "radio";
+                radioBtn.name = "paymentMethod";
+                radioBtn.value = state.data.getPaymentMethods()[i].id;
+                var label = document.createElement("label");
+                var breakElem = document.createElement("BR");
+                label.textContent = state.data.getPaymentMethods()[i].config.displayName;
+                document.getElementsByClassName('paymentMethodList')[0].appendChild(radioBtn);
+                document.getElementsByClassName('paymentMethodList')[0].appendChild(label);
+                document.getElementsByClassName('paymentMethodList')[0].appendChild(breakElem);
+            }
+        }
+        var proceedBtn = document.createElement('button');
+        proceedBtn.innerHTML = 'Proceed';
+        proceedBtn.type = "submit";
+        proceedBtn.className = 'proceed-btn';
+        document.getElementsByClassName('paymentMethodList')[0].appendChild(proceedBtn);
+    }
     var selectedMethod = $("#shippingMethod :selected").val();
     const state = await service.loadPaymentMethods();
     const address = state.data.getShippingAddress();
     const options = state.data.getShippingOptions();
+    console.log("selectedMethod", selectedMethod);
     const updateShippingMethod = await service.selectShippingOption(selectedMethod);
     var get_checkout = state.data.getCheckout();
-    if( get_checkout.consignments[0].selectedShippingOption.type == "shipping_flatrate"){
-        $("#shippingRate").html("$"+get_checkout.consignments[0].selectedShippingOption.cost.toFixed(2));
+    if (get_checkout.consignments[0].selectedShippingOption.type == "shipping_flatrate") {
+        $("#shippingRate").html("$" + get_checkout.consignments[0].selectedShippingOption.cost.toFixed(2));
         var checkoutTotal = $("#totalCheckoutPrice").html();
         var updatedTotal = Number(checkoutTotal.replace("$", "")) + Number(get_checkout.consignments[0].selectedShippingOption.cost);
-        $("#totalCheckoutPrice").html("$"+updatedTotal.toFixed(2));
-    }else{
+        $("#totalCheckoutPrice").html("$" + updatedTotal.toFixed(2));
+    } else {
         $("#shippingRate").html("Free");
     }
+}
+
+var billingContBtn = document.querySelector('.billingContinue');
+if(billingContBtn){
+    billingContBtn.addEventListener('click', async function (e) {
+    e.preventDefault();
+    const state = await service.loadCheckout();
     for (let i = 0; i < state.data.getPaymentMethods().length; i++) {
         if (state.data.getPaymentMethods()[i].type == "PAYMENT_TYPE_API" && state.data.getPaymentMethods()[i].supportedCards.length !== 0 && state.data.getPaymentMethods()[i].method !== 'googlepay') {
             const radioInput = document.createElement('input');
@@ -720,7 +780,9 @@ document.querySelector('.shippingMethodContinue').addEventListener('click', asyn
     proceedBtn.type = "submit";
     proceedBtn.className = 'proceed-btn';
     document.getElementsByClassName('paymentMethodList')[0].appendChild(proceedBtn);
+
 });
+}
 
 $(document).on('click', '.proceed-btn', async function () {
     var methodId = $('input[name="paymentMethod"]:checked').val();
