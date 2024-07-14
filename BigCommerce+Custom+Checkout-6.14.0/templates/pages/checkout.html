@@ -22,598 +22,182 @@
 
 {{#partial "page"}}
 
-<div>
-    <div class="container mb-5 mt-5">
-        <div class="row">
-            <div class="container mb-5 mt-5">
-                <div class="row text-center">
-                    <div class="col-md-12 col-lg-12">
-                        <div class="row text-muted">
-                            <div class="h2 col-12">CUSTOM CHECKOUT</div>
-                            <div class="col-lg-12 col-md-12 dashhead-subtitle h6 text-capitalize text-muted">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="loader"></div>
-                    <div class="col-12" id="main-div">
-                        <div class="row mt-5">
-                            <div class="col-3">
-                                <h5></h5>
-                            </div>
-                            <div class="col-4">
-                                <h5>Products</h5>
-                            </div>
-                            <div class="col-2">
-                                <h5>Price</h5>
-                            </div>
-                            <div class="col-3">
-                                <h5>Quantity</h5>
-                            </div>
-                        </div>
-                        <div class="row" id="product-row">
-                            <div class="col-2">
-                                <img id="product-image" src=/
-                                    style=width:150px;height:150px;position:relative;display:block;bottom:40px;>
-                            </div>
-                            <div class="col-4" id="product-name">
-                            </div>
-                            <div class="col-2">
-                                <span id="product-price">$</span>
-                            </div>
-                            <div class="col-3">
-                                <div class="number">
-                                    <span class="minus" id="minus">-</span>
-                                    <input class="txtQuantity" id="txtQuantity_1" type="text" value="" />
-                                    <span class="plus" id="plus">+</span>
-                                </div>
-                            </div>
-                            <div class="col-1">
-                                <a href="#" class="text-danger">remove</a>
-                            </div>
-                        </div>
-                        <div class="col-8" id="product-total">
-                            <div class="col-4">
-                                <span class="subtotal">SUBTOTAL:</span>
-                                <span id="subtotal">$</span>
-                            </div>
-                            <div class="col-4">
-                                <span class="shipping-rate">Shipping:</span>
-                                <span id="shippingRate">--</span>
-                            </div>
-                            <span id="couponCodeHead" style="color: blue;">Coupon/Gift Certificate</span>
-                            <div class="col-12" id="couponInput" style="display: none;">
-                                <input id="couponCode" name="couponCode" type="text" data-container="body"
-                                    data-placement="top" data-toggle="coupon" placeholder="Enter Coupon Code" value="">
-                                <span class="text-danger" id="errorClass"></span>
-                                <button type="submit" id="couponBtn">Apply</button>
-                                <div class="col-10" id="couponDetails" style="display: none;">
-                                    <div class="col-8" id="couponName"></div>
-                                    <div class="col-3" id="discountValue"></div>
-                                    <div class="col-1">
-                                        <a class="text-danger" id="removeCoupon">remove</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <span class="totalCheckoutPrice">Total:</span>
-                                <span id="totalCheckoutPrice">$</span>
-                            </div>
-                        </div>
-                    </div>
+<div class="container">
+    <div class="left-section">
+        <div class="left-subsections">
+            <div class="section-title">Customer</div>
+            <div class="form-group">
+                <label for="txtEmail">Email</label>
+                <div style="display: flex;">
+                    <input id="txtEmail" name="txtEmail" class="form-control" type="email"
+                        placeholder="Please enter email">
+                    <button class="continue">CONTINUE</button>
                 </div>
             </div>
+            <p class="login-link">Already have an account? <a href="/login.php" class="text-info">Sign in now</a></p>
         </div>
-    </div>
-    <div class="col-12 col-lg-6 justify-content-center border-lg-right">
-        <div class="row justify-content-center">
-            <div class="col-6" style="font-size: 18px;">
-                Contact information
-            </div>
-            <div class="col-6">
-                Already have an account? <a href="/login.php" class="text-info">Log in</a>
-            </div>
-        </div>
-        {{#if customer}}
-        <div class="row">
-            <div class="col-12">
-                <div class="row mt-2">
-                    <div class="col-12">
-                        <div class="w-75">
-                            <input id="txtEmail" name="txtEmail" class="form-control" type="text" data-container="body"
-                                data-placement="top" data-toggle="email" title="" placeholder="Please enter email"
-                                value="">
-                        </div>
-                    </div>
-                    <button class="continue">Continue</button>
-                </div>
-            </div>
-        </div>
-
-        <form>
-            <div class="row mt-4">
-                <div class="col-xl-12">
-                    <div class="row justify-content-center">
-                        <div class="col-12 accordion" style="font-size: 18px;">
-                            Shipping Address
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="left-subsections">
+            <div class="section-title">Shipping</div>
             <div class="shippingForm panel" style="display: none;">
-                <div class="row mt-4">
-                    <div class="col-12 mt-4">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="w-100">
-                                    <label>First Name</label>
-                                    <input id="shippingtxtFirstName" class="form-control" type="text"
-                                        data-container="body" data-placement="top" data-toggle="tooltip" title=""
-                                        value="" name="txtFirstName">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="w-100">
-                                    <label>Last Name</label>
-                                    <input id="shippingtxtLastName" class="form-control" type="text"
-                                        data-container="body" data-placement="top" data-toggle="tooltip" title=""
-                                        value="" name="txtLastName">
-                                </div>
-                            </div>
-                        </div>
+                <div class="section-subtitle">Shipping Address</div>
+                <div class="form-group">
+                    <label for="shippingtxtFirstName">First Name</label>
+                    <input id="shippingtxtFirstName" name="txtFirstName" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="shippingtxtLastName">Last Name</label>
+                    <input id="shippingtxtLastName" name="txtLastName" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="shippingtxtCompanyName">Company Name <span
+                            style="color: #999;">(Optional)</span></label>
+                    <input id="shippingtxtCompanyName" name="txtCompanyName" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="shippingtxtPhoneNumber">Phone Number <span
+                            style="color: #999;">(Optional)</span></label>
+                    <input id="shippingtxtPhoneNumber" name="txtPhoneNumber" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="shippingtxtAddress">Address</label>
+                    <input id="shippingtxtAddress" name="txtAddress" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="shippingtxtAddress-2">Apartment/Suite/Building <span
+                            style="color: #999;">(Optional)</span></label>
+                    <input id="shippingtxtAddress-2" name="txtAddress2" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="shippingtxtCityName">City</label>
+                    <input id="shippingtxtCityName" name="txtCityName" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="shippingZone">Country</label>
+                    <select id="shippingZone" name="shippingZone">
+                        <option value="IN">India</option>
+                        <option value="US">USA</option>
+                        <option value="UK">UK</option>
+                        <option value="NZ">New Zealand</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="shippingtxtStateName">State</label>
+                        <input id="shippingtxtStateName" name="txtStateName" type="text">
                     </div>
-                    <div class="col-12 mt-4">
-                        <div class="w-100">
-                            <label>Company Name</label>
-                            <input id="shippingtxtCompanyName" class="form-control" type="text" data-container="body"
-                                data-placement="top" data-toggle="tooltip" title="" value="" name="txtCompanyName">
-                        </div>
-                    </div>
-                    <div class="col-12 mt-4">
-                        <div class="w-100">
-                            <label>Address Line-1</label>
-                            <input id="shippingtxtAddress" name="txtAddress" class="form-control shipping" type="text"
-                                data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
-                        </div>
-                    </div>
-                    <div class="col-12 mt-4">
-                        <div class="w-100">
-                            <label>Address Line-2</label>
-                            <input id="shippingtxtAddress-2" name="txtAddress" class="form-control" type="text"
-                                data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
-                        </div>
-                    </div>
-                    <div class="col-12 mt-4">
-                        <div class="w-100">
-                            <label>Contact Number</label>
-                            <input id="shippingtxtPhoneNumber" name="txtPhoneNumber" class="form-control" type="text"
-                                data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
-                        </div>
-                    </div>
-                    <div class="col-12 mt-4">
-                        <div class="w-100">
-                            <label>City</label>
-                            <input id="shippingtxtCityName" name="txtCityName" class="form-control shipping" type="text"
-                                data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
-                        </div>
-                    </div>
-                    <div class="col-12 mt-4">
-                        <div class="w-100">
-                            <label>Country</label>
-                            <select class="selectpicker countrypicker dropdown-header w-100 shipping" id="shippingZone"
-                                data-live-search="true" data-default="United States" data-flag="true">
-                                <option value="">Select Country</option>
-                                <option value="US">USA</option>
-                                <option value="IN">India</option>
-                                <option value="UK">UK</option>
-                                <option value="NZ">New Zealand</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-12 mt-4">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="w-100">
-                                    <label>State</label>
-                                    <input id="shippingtxtStateName" name="txtStateName" class="form-control shipping"
-                                        type="text" data-container="body" data-placement="top" data-toggle="tooltip"
-                                        title="" value="">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="w-100">
-                                    <label>Postal Code</label>
-                                    <input id="shippingtxtPostalCode" class="form-control shipping" type="text"
-                                        data-container="body" data-placement="top" data-toggle="tooltip" title=""
-                                        value="" name="txtPostalCode">
-                                </div>
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        <label for="shippingtxtPostalCode">Postal Code</label>
+                        <input id="shippingtxtPostalCode" name="txtPostalCode" type="text" placeholder="123">
                     </div>
                 </div>
-                <span class="pl-4">
-                    <input class="form-check-input" style="cursor:pointer;" type="checkbox" name="adresscheckbox"
-                        id="adresscheckbox">
-                    <small class="txtAddress-field text-muted">Billing Address is same as Shipping Address</small>
-                </span>
-            </div>
-            <div class="row mt-4">
-                <div class="col-xl-12">
-                    <div class="row justify-content-center">
-                        <div class="col-12" style="font-size: 18px;">
-                            Shipping Methods
-                        </div>
-                    </div>
+                <div class="form-check">
+                    <input type="checkbox" id="adresscheckbox">
+                    <label for="adresscheckbox">My billing address is the same as my shipping address.</label>
                 </div>
+                <button class="shippingContinue">Continue</button>
             </div>
-            <div class="row mt-4">
-                <div class="col-12" id="shippingMethodDropDown">
-                </div>
+            <div class="shipping-methods" style="display: none;">
+                <div class="section-subtitle" id="shippingMethodDropDown">Shipping Method</div>
             </div>
-            <div class="row mt-4">
-                <div class="col-xl-12">
-                    <div class="row justify-content-center">
-                        <div class="col-12 accordion" style="font-size: 18px;">
-                            Billing Address
-                        </div>
-                    </div>
-                </div>
-            </div>
+        </div>
+        <div class="left-subsections">
+            <div class="section-title">Billing</div>
             <div class="billingForm panel" style="display: none;">
-                <div class="col-12 mt-4">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="w-100">
-                                <label>First Name</label>
-                                <input id="billingtxtFirstName" class="form-control billing" type="text"
-                                    data-container="body" data-placement="top" data-toggle="tooltip" title="" value=""
-                                    name="txtFirstName">
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="w-100">
-                                <label>Last Name</label>
-                                <input id="billingtxtLastName" class="form-control billing" type="text"
-                                    data-container="body" data-placement="top" data-toggle="tooltip" title="" value=""
-                                    name="txtLastName">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col-12">
-                            <label>Company Name</label>
-                            <input id="billingtxtCompanyName" class="form-control billing" type="text"
-                                data-container="body" data-placement="top" data-toggle="tooltip" title="" value=""
-                                name="txtCompanyName">
-                        </div>
-                        <div class="col-12 mt-4">
-                            <div class="w-100">
-                                <label>Address Line-1</label>
-                                <input id="billingtxtAddress" name="txtAddress" class="form-control billing" type="text"
-                                    data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
-                            </div>
-                        </div>
-                        <div class="col-12 mt-4">
-                            <div class="w-100">
-                                <label>Address Line-2</label>
-                                <input id="billingtxtAddress-2" name="txtAddress" class="form-control billing"
-                                    type="text" data-container="body" data-placement="top" data-toggle="tooltip"
-                                    title="" value="">
-                            </div>
-                        </div>
-                        <div class="col-12 mt-4">
-                            <div class="w-100">
-                                <label>Contact Number</label>
-                                <input id="billingtxtPhoneNumber" name="txtPhoneNumber" class="form-control billing"
-                                    type="text" data-container="body" data-placement="top" data-toggle="tooltip"
-                                    title="" value="">
-                            </div>
-                        </div>
-                        <div class="col-12 mt-4">
-                            <div class="w-100">
-                                <label>City</label>
-                                <input id="billingtxtCityName" name="txtCityName" class="form-control billing"
-                                    type="text" data-container="body" data-placement="top" data-toggle="tooltip"
-                                    title="" value="">
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <label>Country</label>
-                            <select class="selectpicker countrypicker dropdown-header w-100 billing"
-                                data-live-search="true" data-default="United States" data-flag="true" id="billingZone">
-                                <option>Select Country</option>
-                                <option value="US">USA</option>
-                                <option value="NZ">New Zealand</option>
-                            </select>
-                        </div>
-                        <div class="col-12 mt-4">
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="w-100">
-                                        <label>State or Province</label>
-                                        <input id="billingtxtStateName" name="txtStateName" class="form-control billing"
-                                            type="text" data-container="body" data-placement="top" data-toggle="tooltip"
-                                            title="" value="">
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="w-100">
-                                        <label>Postal Code</label>
-                                        <input id="billingtxtPostalCode" class="form-control billing" type="text"
-                                            data-container="body" data-placement="top" data-toggle="tooltip" title=""
-                                            value="" name="txtPostalCode">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="billingContinue">Continue</button>
+                <div class="section-subtitle">Billing Address</div>
+                <div class="form-group">
+                    <label for="billingtxtFirstName">First Name</label>
+                    <input id="billingtxtFirstName" name="txtFirstName" type="text">
                 </div>
+                <div class="form-group">
+                    <label for="billingtxtLastName">Last Name</label>
+                    <input id="billingtxtLastName" name="txtLastName" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="billingtxtCompanyName">Company Name <span style="color: #999;">(Optional)</span></label>
+                    <input id="billingtxtCompanyName" name="txtCompanyName" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="billingtxtPhoneNumber">Phone Number <span style="color: #999;">(Optional)</span></label>
+                    <input id="billingtxtPhoneNumber" name="txtPhoneNumber" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="billingtxtAddress">Address</label>
+                    <input id="billingtxtAddress" name="txtAddress" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="billingtxtAddress-2">Apartment/Suite/Building <span
+                            style="color: #999;">(Optional)</span></label>
+                    <input id="billingtxtAddress-2" name="txtAddress2" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="billingtxtCityName">City</label>
+                    <input id="billingtxtCityName" name="txtCityName" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="billingZone">Country</label>
+                    <select id="billingZone" name="billingZone">
+                        <option value="IN">India</option>
+                        <option value="US">USA</option>
+                        <option value="UK">UK</option>
+                        <option value="NZ">New Zealand</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="billingtxtStateName">State</label>
+                        <input id="billingtxtStateName" name="txtStateName" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label for="billingtxtPostalCode">Postal Code</label>
+                        <input id="billingtxtPostalCode" name="txtPostalCode" type="text" placeholder="123">
+                    </div>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="cbEmailOffers" name="cbEmailOffers">
+                    <label for="cbEmailOffers">Email me with news and offers</label>
+                </div>
+                <button class="billingContinue">CONTINUE</button>
             </div>
-        </form>
+        </div>
+        <div class="left-subsections">
+            <div class="section-title">Payment</div>
+            <div class="section-subtitle">Payment Method</div>
+            <div class="paymentMethodList">
+            </div>
+            <!-- <button type="submit" class="continue">Proceed</button> -->
+        </div>
+    </div>
 
-        {{else}}
-        <div class="row">
-            <div class="col-12">
-                <div class="row mt-2">
-                    <div class="col-12">
-                        <div class="w-75">
-                            <input id="txtEmail" name="txtEmail" class="form-control" type="text" data-container="body"
-                                data-placement="top" data-toggle="email" title="" placeholder="Please enter email"
-                                value="">
-                        </div>
-                    </div>
-                    <button class="continue">Continue</button>
+    <div class="right-section">
+        <div class="right-subsections">
+            <div class="order-summary">
+                <div class="summary-header">
+                    <h3>Order Summary</h3>
+                    <a href="#" class="text-info edit-cart">Edit Cart</a>
+                </div>
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="subtotal">$</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <span id="shippingRate">Free</span>
+                </div>
+                <div class="summary-row">
+                    <span>Tax</span>
+                    <span>$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span><a href="#" class="text-info">Coupon/Gift Certificate</a></span>
+                </div>
+                <div class="divider"></div>
+                <div class="summary-row total">
+                    <span>Total (USD)</span>
+                    <span id="totalCheckoutPrice">$</span>
                 </div>
             </div>
-        </div>
-        <form>
-            <div class="row mt-4">
-                <div class="col-xl-12">
-                    <div class="row justify-content-center">
-                        <div class="col-12 accordion" style="font-size: 18px;">
-                            Shipping Address
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="shippingForm panel" style="display: none;">
-                <div class="row mt-4">
-                    <div class="col-12 mt-4">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="w-100">
-                                    <label>First Name</label>
-                                    <input id="shippingtxtFirstName" class="form-control shipping" type="text"
-                                        data-container="body" data-placement="top" data-toggle="tooltip" title=""
-                                        value="" name="txtFirstName">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="w-100">
-                                    <label>Last Name</label>
-                                    <input id="shippingtxtLastName" class="form-control shipping" type="text"
-                                        data-container="body" data-placement="top" data-toggle="tooltip" title=""
-                                        value="" name="txtLastName">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 mt-4">
-                        <div class="w-100">
-                            <label>Company Name</label>
-                            <input id="shippingtxtCompanyName" class="form-control shipping" type="text"
-                                data-container="body" data-placement="top" data-toggle="tooltip" title="" value=""
-                                name="txtCompanyName">
-                        </div>
-                    </div>
-                    <div class="col-12 mt-4">
-                        <div class="w-100">
-                            <label>Address Line-1</label>
-                            <input id="shippingtxtAddress" name="txtAddress" class="form-control shipping" type="text"
-                                data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
-                        </div>
-                    </div>
-                    <div class="col-12 mt-4">
-                        <div class="w-100">
-                            <label>Address Line-2</label>
-                            <input id="shippingtxtAddress-2" name="txtAddress" class="form-control shipping" type="text"
-                                data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
-                        </div>
-                    </div>
-                    <div class="col-12 mt-4">
-                        <div class="w-100">
-                            <label>Contact Number</label>
-                            <input id="shippingtxtPhoneNumber" name="txtPhoneNumber" class="form-control shipping"
-                                type="text" data-container="body" data-placement="top" data-toggle="tooltip" title=""
-                                value="">
-                        </div>
-                    </div>
-                    <div class="col-12 mt-4">
-                        <div class="w-100">
-                            <label>City</label>
-                            <input id="shippingtxtCityName" name="txtCityName" class="form-control shipping" type="text"
-                                data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
-                        </div>
-                    </div>
-                    <div class="col-12 mt-4">
-                        <div class="w-100">
-                            <label>Country</label>
-                            <select class="selectpicker countrypicker dropdown-header w-100 shipping" id="shippingZone"
-                                data-live-search="true" data-default="United States" data-flag="true">
-                                <option value="">Select Country</option>
-                                <option value="US">USA</option>
-                                <option value="IN">India</option>
-                                <option value="UK">UK</option>
-                                <option value="NZ">New Zealand</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-12 mt-4">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="w-100">
-                                    <label>State</label>
-                                    <input id="shippingtxtStateName" name="txtStateName" class="form-control shipping"
-                                        type="text" data-container="body" data-placement="top" data-toggle="tooltip"
-                                        title="" value="">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="w-100">
-                                    <label>Postal Code</label>
-                                    <input id="shippingtxtPostalCode" class="form-control shipping" type="text"
-                                        data-container="body" data-placement="top" data-toggle="tooltip" title=""
-                                        value="" name="txtPostalCode">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <span class="pl-4">
-                    <input class="form-check-input" style="cursor:pointer;" type="checkbox" name="adresscheckbox"
-                        id="adresscheckbox">
-                    <small class="txtAddress-field text-muted">Billing Address is same as Shipping Address</small>
-                </span>
-            </div>
-            <div class="row mt-4">
-                <div class="col-xl-12">
-                    <div class="row justify-content-center">
-                        <div class="col-12" style="font-size: 18px;">
-                            Shipping Methods
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-12" id="shippingMethodDropDown">
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-xl-12">
-                    <div class="row justify-content-center">
-                        <div class="col-12 accordion" style="font-size: 18px;">
-                            Billing Address
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="billingForm panel" style="display: none;">
-                <div class="col-12 mt-4">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="w-100">
-                                <label>First Name</label>
-                                <input id="billingtxtFirstName" class="form-control billing" type="text"
-                                    data-container="body" data-placement="top" data-toggle="tooltip" title="" value=""
-                                    name="txtFirstName">
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="w-100">
-                                <label>Last Name</label>
-                                <input id="billingtxtLastName" class="form-control billing" type="text"
-                                    data-container="body" data-placement="top" data-toggle="tooltip" title="" value=""
-                                    name="txtLastName">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col-12">
-                            <label>Company Name</label>
-                            <input id="billingtxtCompanyName" class="form-control billing" type="text"
-                                data-container="body" data-placement="top" data-toggle="tooltip" title="" value=""
-                                name="txtCompanyName">
-                        </div>
-                        <div class="col-12 mt-4">
-                            <div class="w-100">
-                                <label>Address Line-1</label>
-                                <input id="billingtxtAddress" name="txtAddress" class="form-control billing" type="text"
-                                    data-container="body" data-placement="top" data-toggle="tooltip" title="" value="">
-                            </div>
-                        </div>
-                        <div class="col-12 mt-4">
-                            <div class="w-100">
-                                <label>Address Line-2</label>
-                                <input id="billingtxtAddress-2" name="txtAddress" class="form-control billing"
-                                    type="text" data-container="body" data-placement="top" data-toggle="tooltip"
-                                    title="" value="">
-                            </div>
-                        </div>
-                        <div class="col-12 mt-4">
-                            <div class="w-100">
-                                <label>Contact Number</label>
-                                <input id="billingtxtPhoneNumber" name="txtPhoneNumber" class="form-control billing"
-                                    type="text" data-container="body" data-placement="top" data-toggle="tooltip"
-                                    title="" value="">
-                            </div>
-                        </div>
-                        <div class="col-12 mt-4">
-                            <div class="w-100">
-                                <label>City</label>
-                                <input id="billingtxtCityName" name="txtCityName" class="form-control billing"
-                                    type="text" data-container="body" data-placement="top" data-toggle="tooltip"
-                                    title="" value="">
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <label>Country</label>
-                            <select class="selectpicker countrypicker dropdown-header w-100 billing"
-                                data-live-search="true" data-default="United States" data-flag="true" id="billingZone">
-                                <option>Select Country</option>
-                                <option value="US">USA</option>
-                                <option value="NZ">New Zealand</option>
-                            </select>
-                        </div>
-                        <div class="col-12 mt-4">
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="w-100">
-                                        <label>State or Province</label>
-                                        <input id="billingtxtStateName" name="txtStateName" class="form-control billing"
-                                            type="text" data-container="body" data-placement="top" data-toggle="tooltip"
-                                            title="" value="">
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="w-100">
-                                        <label>Postal Code</label>
-                                        <input id="billingtxtPostalCode" class="form-control billing" type="text"
-                                            data-container="body" data-placement="top" data-toggle="tooltip" title=""
-                                            value="" name="txtPostalCode">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="billingContinue">Continue</button>
-                </div>
-            </div>
-        </form>
-        {{/if}}
-        <div class="col-12 col-lg-6 justify-content-center border-lg-right">
-            <span class="pl-4">
-                <input class="form-check-input" style="cursor:pointer;" type="checkbox" name="cbEmailOffers"
-                    id="cbEmailOffers">
-                <small class="txtEmail-field text-muted">Email me with news and offers</small>
-            </span>
         </div>
     </div>
-    <div class="col-8 col-lg-6 border-lg-right">
-        <div class="row mt-4">
-            <div class="col-xl-12">
-                <div class="row">
-                    <div class="col-12" style="font-size: 18px;">
-                        Payment
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="paymentMethodList" style="display: none;">
-        </div>
-    </div>
-</div>
 </div>
 
 {{{ footer.scripts }}}
@@ -648,3 +232,459 @@ window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
 </script>
 
 {{> layout/empty}}
+
+<style>
+        body {
+        font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #343a40;
+    }
+
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-title {
+        font-size: 25px;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    .section-subtitle {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        margin-top: 40px;
+    }
+
+    .left-section,
+    .right-section {
+        background-color: #fff;
+        padding: 20px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+
+    .left-section {
+        flex: 1;
+        margin-right: 20px;
+        min-width: 300px;
+    }
+
+    .right-section {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        padding-left: 5PX;
+        color: #666;
+        font-size: 14px;
+    }
+
+    .form-group input,
+    .form-group select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .form-row {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .form-row .form-group {
+        flex: 1;
+        min-width: 150px;
+    }
+
+    .form-row .form-group:not(:last-child) {
+        margin-right: 10px;
+    }
+
+    .form-check {
+        display: flex;
+        align-items: center;
+        /* margin-top: 20px; */
+        margin-bottom: 20px;
+    }
+
+    .form-check input {
+        margin-right: 10px;
+    }
+
+    .form-check label {
+        color: #666;
+
+        /* align-items: center; */
+    }
+
+    .shipping-methods {
+        margin-top: 20px;
+    }
+
+    .shipping-method {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        transition: background-color 0.3s ease;
+        font-size: 14px;
+    }
+
+    .shipping-method:hover {
+        background-color: #f1f1f1;
+    }
+
+    .shipping-method input {
+        margin-right: 10px;
+    }
+
+    .shipping-method label {
+        margin: 0;
+        font-size: 14px;
+        color: #333;
+    }
+
+    .order-comments {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .order-comments label {
+        display: block;
+        margin-bottom: 5px;
+        color: #666;
+    }
+
+    .order-comments textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .continue,
+    .billingContinue,
+    .shippingContinue,
+    .shippingMethodContinue,
+    .proceed-btn {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #333;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        text-align: center;
+        /* margin-top: 20px; */
+        transition: background-color 0.3s ease;
+    }
+
+    .continue:hover,
+    .billingContinue:hover,
+    .shippingContinue:hover,
+    shippingMethodContinue:hover,
+    proceed-btn:hover {
+        background-color: #555;
+    }
+
+    .form-group button {
+        width: 150px;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        background-color: #333;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .login-link {
+        margin-top: 30px;
+        color: #666;
+
+    }
+
+    .login-link a {
+        color: #0066c0;
+        text-decoration: none;
+    }
+
+    .login-link a:hover {
+        text-decoration: underline;
+    }
+
+    .left-subsections {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        padding-top: 20px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .right-subsections {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        padding-bottom: 30px;
+    }
+
+    .order-summary {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 20px;
+    }
+
+    .order-summary h3 {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        display: inline-block;
+    }
+
+    .order-summary .edit-cart {
+        float: right;
+        margin-top: 2px;
+        font-size: 14px;
+    }
+
+    .order-summary .item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .order-summary .item img {
+        max-width: 50px;
+        margin-right: 10px;
+    }
+
+    .order-summary .item-details {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+    }
+
+    .order-summary .item-quantity {
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
+    }
+
+    .order-summary .item-quantity input {
+        width: 40px;
+        text-align: center;
+        margin: 0 5px;
+    }
+
+    .order-summary .item-quantity button {
+        border: 1px solid #ddd;
+        padding: 5px;
+        background-color: #fff;
+        cursor: pointer;
+    }
+
+    .order-summary .item-quantity button:hover {
+        background-color: #f1f1f1;
+    }
+
+    .order-summary .item-price {
+        font-weight: bold;
+    }
+
+    .order-summary .divider {
+        border-top: 1px solid #ddd;
+        margin: 20px 0;
+    }
+
+    .order-summary .summary-row {
+        display: flex;
+        justify-content: space-between;
+        margin: 5px 0;
+        font-size: 16px;
+    }
+
+    .order-summary .total {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    .text-danger {
+        color: red;
+    }
+
+    .text-info {
+        color: #0066c0;
+        text-decoration: none;
+    }
+
+    .text-info:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            flex-direction: column-reverse;
+            padding: 10px;
+        }
+
+        .left-section {
+            margin-right: 0;
+            margin-bottom: 20px;
+        }
+
+        .right-section {
+            width: 100%;
+            max-width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .form-row .form-group:not(:last-child) {
+            margin-right: 0;
+            margin-bottom: 10px;
+        }
+
+        .order-summary .item img {
+            width: 50px;
+            height: auto;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .form-row {
+            flex-direction: column;
+        }
+
+        .form-row .form-group {
+            margin-right: 0;
+            margin-bottom: 10px;
+        }
+    }
+
+    .paymentMethodList {
+        margin-top: 20px;
+    }
+
+    .paymentMethodList label:hover {
+        background-color: #f1f1f1;
+    }
+
+    .paymentMethodList input[type="radio"] {
+        display: inline-block;
+    }
+
+    .paymentMethodList label {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-bottom: 20px ;
+        margin-top: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-size: 14px;
+        justify-content: flex-start;
+    }
+
+    .paymentMethodList label::before {
+        content: "";
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        border-radius: 50%;
+        border: 2px solid #ddd;
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+
+    .paymentMethodList input[type="radio"]:checked+label::before {
+        background-color: #333;
+        border-color: #333;
+    }
+
+    .paymentMethodList input[type="radio"]:checked+label {
+        background-color: #f1f1f1;
+        border-color: #333;
+
+    }
+
+    .paymentMethod {
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-top: 10px;
+        max-width: 400px;
+        /* Adjusted for smaller container */
+        margin-right: auto;
+        margin-left: 0px;
+        background-color: #f8f9fa;
+    }
+
+    .paymentMethod .form-body {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .paymentMethod .form-body input,
+    .paymentMethod .form-body select {
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .paymentMethod .form-body .cvv-row {
+        display: flex;
+        gap: 10px;
+    }
+
+    .paymentMethod .form-body .cvv-row select {
+        flex: 1;
+    }
+
+    .paymentMethod .form-body .cvv-row .cvv-input {
+        flex: 0 0 100px;
+        /* Adjusted for smaller CVV input */
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .paymentMethod .form-body .cvv-details {
+        font-size: 14px;
+        color: #666;
+        text-align: left;
+    }
+</style>
